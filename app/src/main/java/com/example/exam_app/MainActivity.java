@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     RadioButton option1Button, option2Button, option3Button, option4Button,radioButton;
     Button nextButton;
     TextView currentQuestion;
+    TextView score;
     RadioGroup radioGroup;
 
     String []questionText={"Who is pm of pakistan","Who is cm of punjab", "Who is cm of sindh"};
@@ -52,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         option4Button = findViewById(R.id.option4);
         nextButton= findViewById(R.id.next);
         currentQuestion= findViewById(R.id.currentQuestion);
+        score=findViewById(R.id.score);
+
 
 
         questionBox.setText(questionText[questionNumber]);
@@ -92,9 +95,12 @@ public class MainActivity extends AppCompatActivity {
 
                     }
 
-                    System.out.println("correct answers"+correctCount);
 
-                    System.out.println("Wrong answers"+wrongCount);
+                    score.setText("Correct Answers "+correctCount+"\nWrong Answers "+wrongCount);
+                    nextButton.setText("");
+                    questionBox.setText("");
+                    radioGroup.removeAllViews();
+
 
 
 
@@ -141,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
             //Toast.makeText(MainActivity.this, "option2 is selected", Toast.LENGTH_SHORT).show();
             userAnswers[questionNumber] = option2Button.getText().toString();
         } else if (selectedId == option3Button.getId()) {
-            Toast.makeText(MainActivity.this, "option3 is selected", Toast.LENGTH_SHORT).show();
             userAnswers[questionNumber] = option3Button.getText().toString();
         } else if (selectedId == option4Button.getId()) {
             Toast.makeText(MainActivity.this, option4Button.getText(), Toast.LENGTH_SHORT).show();
