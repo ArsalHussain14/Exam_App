@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     int questionNumber=0,iteration=0;
+    int []options={0,0,0,0};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,11 +116,31 @@ public class MainActivity extends AppCompatActivity {
 
 
                     questionBox.setText(questionText[questionNumber]);
-                    option1Button.setText(option1[questionNumber]);
-                    option2Button.setText(option2[questionNumber]);
-                    option3Button.setText(option3[questionNumber]);
-                    option4Button.setText(option4[questionNumber]);
+                    int optionNumber=generateRandomOptions();
+                    setOptions(option1Button,optionNumber);
+
+
+                    optionNumber=generateRandomOptions();
+                    setOptions(option2Button,optionNumber);
+
+
+                    optionNumber=generateRandomOptions();
+                    setOptions(option3Button,optionNumber);
+
+                    optionNumber=generateRandomOptions();
+                    setOptions(option4Button,optionNumber);
+
+
+
+//
+//                    option2Button.setText(option2[questionNumber]);
+//                    option3Button.setText(option3[questionNumber]);
+//                    option4Button.setText(option4[questionNumber]);
                     currentQuestion.setText(Integer.toString(iteration+1));
+                    for(int i=0;i<4;i++)
+                    {
+                        options[i]=0;
+                    }
                 }
 
 
@@ -134,6 +155,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    private void setOptions(RadioButton option, int optionNumber)
+    {
+        if(optionNumber==0)
+            option.setText(option1[questionNumber]);
+        else if(optionNumber==1)
+            option.setText(option2[questionNumber]);
+        else if(optionNumber==2)
+            option.setText(option3[questionNumber]);
+        else if(optionNumber==3)
+            option.setText(option4[questionNumber]);
+    }
+
 
     private void saveAnswer()
     {
@@ -171,6 +205,18 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(number);
         return number;
 
+    }
+
+    private int generateRandomOptions()
+    {
+        Random rnd= new Random();
+        int number=rnd.nextInt(4);
+        while(options[number]==1)
+        {
+            number=rnd.nextInt(4);
+        }
+        options[number]=1;
+        return number;
     }
 
 
