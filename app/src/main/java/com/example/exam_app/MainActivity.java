@@ -11,6 +11,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText questionBox;
@@ -19,19 +21,30 @@ public class MainActivity extends AppCompatActivity {
     TextView currentQuestion;
     RadioGroup radioGroup;
 
-    String []questionText={"Who is pm of pakistan","Who is cm of punjab"};
-    String []option1={"imran khan","pervaize ilahi"};
+    String []questionText={"Who is pm of pakistan","Who is cm of punjab", "Who is cm of sindh"};
+    String []option1={"imran khan","pervaize ilahi","Donald trump"};
 
-    String []option2={"nawaz sharif","usman buzdar"};
-    String []option3={"general bajwaa","sarafaraz ahmed"};
-    String []option4={"shahbaz sharif","babar azam"};
-    String [] correctOption={"shahbaz sharif","pervaize ilahi"};
-    String [] userAnswers= new String[2];
-    int questionNumber=0;
+    String []option2={"nawaz sharif","usman buzdar", "Murad Ali Shah"};
+    String []option3={"general bajwaa","sarafaraz ahmed","John Cena"};
+    String []option4={"shahbaz sharif","babar azam","UnderTaker"};
+    String [] correctOption={"shahbaz sharif","pervaize ilahi","Murad Ali Shah"};
+    int questionsLength=3;
+
+    String [] userAnswers= new String[questionsLength];
+
+
+    int questionNumber=0,iteration=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        for(int i=0;i<questionsLength;i++)
+        {
+            userAnswers[i]="No";
+        }
+
+        questionNumber=generateRandomNumber();
         questionBox= findViewById(R.id.questionBox);
         option1Button = findViewById(R.id.option1);
         option2Button = findViewById(R.id.option2);
@@ -47,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         option3Button.setText(option3[questionNumber]);
         option4Button.setText(option4[questionNumber]);
         String c1= Integer.toString(questionNumber);
-        currentQuestion.setText(Integer.toString(questionNumber+1));
+        currentQuestion.setText(Integer.toString(iteration+1));
 
 
 
@@ -55,17 +68,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                questionNumber++;
+                iteration++;
 
 
 
-                if(questionNumber>=2)
+                if(iteration==questionsLength)
                 {
                     saveAnswer();
 
                     System.out.println("Your answers");
                     int correctCount=0,wrongCount=0;
-                    for(int i=0;i<2;i++)
+                    for(int i=0;i<questionsLength;i++)
                     {
                         System.out.println("Your answers"+userAnswers[i]);
                         System.out.println("Correct answers"+correctOption[i]);
@@ -86,9 +99,11 @@ public class MainActivity extends AppCompatActivity {
 
 
                 }
+
                 else {
 
                     saveAnswer();
+                    questionNumber=generateRandomNumber();
 
 
 
@@ -98,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                     option2Button.setText(option2[questionNumber]);
                     option3Button.setText(option3[questionNumber]);
                     option4Button.setText(option4[questionNumber]);
-                    currentQuestion.setText(Integer.toString(questionNumber+1));
+                    currentQuestion.setText(Integer.toString(iteration+1));
                 }
 
 
@@ -121,19 +136,38 @@ public class MainActivity extends AppCompatActivity {
         int selectedId = radioGroup.getCheckedRadioButtonId();
         if (selectedId == option1Button.getId()) {
             //Toast.makeText(MainActivity.this, "option1 is selected", Toast.LENGTH_SHORT).show();
-            userAnswers[questionNumber-1] = option1Button.getText().toString();
+            userAnswers[questionNumber] = option1Button.getText().toString();
         } else if (selectedId == option2Button.getId()) {
             //Toast.makeText(MainActivity.this, "option2 is selected", Toast.LENGTH_SHORT).show();
-            userAnswers[questionNumber-1] = option2Button.getText().toString();
+            userAnswers[questionNumber] = option2Button.getText().toString();
         } else if (selectedId == option3Button.getId()) {
             Toast.makeText(MainActivity.this, "option3 is selected", Toast.LENGTH_SHORT).show();
-            userAnswers[questionNumber-1] = option3Button.getText().toString();
+            userAnswers[questionNumber] = option3Button.getText().toString();
         } else if (selectedId == option4Button.getId()) {
             Toast.makeText(MainActivity.this, option4Button.getText(), Toast.LENGTH_SHORT).show();
-            userAnswers[questionNumber-1] = option4Button.getText().toString();
+            userAnswers[questionNumber] = option4Button.getText().toString();
         }
 
     }
+
+    private int generateRandomNumber()
+    {
+        System.out.println("random fun called");
+
+        Random rnd = new Random();
+        int number;
+
+        number = rnd.nextInt(questionsLength);
+        while(userAnswers[number]!="No")
+        {
+            number = rnd.nextInt(questionsLength);
+
+        }
+        System.out.println(number);
+        return number;
+
+    }
+
 
 
 }
