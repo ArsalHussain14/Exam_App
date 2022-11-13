@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     EditText questionBox;
     RadioButton option1Button, option2Button, option3Button, option4Button,radioButton;
     Button nextButton;
-    TextView currentQuestion;
+    TextView currentQuestion,displayAnswers;
     TextView score;
     RadioGroup radioGroup;
 
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         nextButton= findViewById(R.id.next);
         currentQuestion= findViewById(R.id.currentQuestion);
         score=findViewById(R.id.score);
+        displayAnswers= findViewById(R.id.displayAnswers);
 
 
 
@@ -98,11 +101,23 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     currentQuestion.setText("RESULT");
-                    score.setBackgroundColor(getResources().getColor(R.color.green));
+                    score.setBackgroundColor(getResources().getColor(R.color.white));
                     score.setText("Correct Answers "+correctCount+"\nWrong Answers "+wrongCount);
-                    nextButton.setText("");
+
+                    nextButton.setVisibility(View.GONE);
                     questionBox.setText("");
                     radioGroup.removeAllViews();
+                    String result;
+
+                    for(int i=0;i<questionsLength;i++)
+                    {
+                        if(userAnswers[i].equals(correctOption[i]))
+                            result="Right";
+                        else
+                            result="wrong";
+                        displayAnswers.append(userAnswers[i]+"  "+correctOption[i]+"  "+result+"\n");
+                    }
+
 
 
 
@@ -135,10 +150,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//
-//                    option2Button.setText(option2[questionNumber]);
-//                    option3Button.setText(option3[questionNumber]);
-//                    option4Button.setText(option4[questionNumber]);
                     currentQuestion.setText(Integer.toString(iteration+1));
                     for(int i=0;i<4;i++)
                     {
