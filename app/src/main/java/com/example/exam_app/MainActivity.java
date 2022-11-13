@@ -25,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
     TextView score;
     RadioGroup radioGroup;
 
-    String []questionText={"Who is pm of pakistan","Who is cm of punjab", "Who is cm of sindh"};
-    String []option1={"imran khan","pervaize ilahi","Donald trump"};
+    String []questionText={"Cobalt is a component of which of the following Vitamins?","What is the Gaussian unit of kinematic viscosity?", "Which of the following is another unit of frequency?"};
+    String []option1={"VitaminA","Henry","decibel"};
 
-    String []option2={"nawaz sharif","usman buzdar", "Murad Ali Shah"};
-    String []option3={"general bajwaa","sarafaraz ahmed","John Cena"};
-    String []option4={"shahbaz sharif","babar azam","UnderTaker"};
-    String [] correctOption={"shahbaz sharif","pervaize ilahi","Murad Ali Shah"};
+    String []option2={"VitaminD ","Stokes", "cycle per second"};
+    String []option3={"VitaminE","Watt","metre per second"};
+    String []option4={"VitaminB12 ","poiseiulle","second"};
+    String [] correctOption={"VitaminB12","Stokes","cycle per second"};
     int questionsLength=3;
 
     String [] userAnswers= new String[questionsLength];
