@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     String []option2={"VitaminD ","Stokes", "cycle per second"};
     String []option3={"VitaminE","Watt","metre per second"};
-    String []option4={"VitaminB12 ","poiseiulle","second"};
+    String []option4={"VitaminB12","poiseiulle","second"};
     String [] correctOption={"VitaminB12","Stokes","cycle per second"};
     int questionsLength=3;
 
