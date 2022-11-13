@@ -1,6 +1,7 @@
 package com.example.exam_app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.graphics.Color;
 
 import android.os.Bundle;
 import android.view.View;
@@ -96,11 +97,13 @@ public class MainActivity extends AppCompatActivity {
 
                     }
 
-
+                    currentQuestion.setText("RESULT");
+                    score.setBackgroundColor(getResources().getColor(R.color.green));
                     score.setText("Correct Answers "+correctCount+"\nWrong Answers "+wrongCount);
                     nextButton.setText("");
                     questionBox.setText("");
                     radioGroup.removeAllViews();
+
 
 
 
@@ -175,15 +178,12 @@ public class MainActivity extends AppCompatActivity {
 
         int selectedId = radioGroup.getCheckedRadioButtonId();
         if (selectedId == option1Button.getId()) {
-            //Toast.makeText(MainActivity.this, "option1 is selected", Toast.LENGTH_SHORT).show();
             userAnswers[questionNumber] = option1Button.getText().toString();
         } else if (selectedId == option2Button.getId()) {
-            //Toast.makeText(MainActivity.this, "option2 is selected", Toast.LENGTH_SHORT).show();
             userAnswers[questionNumber] = option2Button.getText().toString();
         } else if (selectedId == option3Button.getId()) {
             userAnswers[questionNumber] = option3Button.getText().toString();
         } else if (selectedId == option4Button.getId()) {
-            Toast.makeText(MainActivity.this, option4Button.getText(), Toast.LENGTH_SHORT).show();
             userAnswers[questionNumber] = option4Button.getText().toString();
         }
 
@@ -191,7 +191,6 @@ public class MainActivity extends AppCompatActivity {
 
     private int generateRandomNumber()
     {
-        System.out.println("random fun called");
 
         Random rnd = new Random();
         int number;
@@ -202,7 +201,6 @@ public class MainActivity extends AppCompatActivity {
             number = rnd.nextInt(questionsLength);
 
         }
-        System.out.println(number);
         return number;
 
     }
