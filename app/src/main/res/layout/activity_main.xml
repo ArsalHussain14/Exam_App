@@ -38,9 +38,10 @@
         android:id="@+id/radioGroup"
         android:layout_width="338dp"
         android:layout_height="225dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="140dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/questionBox"
+        app:layout_constraintHorizontal_bias="0.437"
         app:layout_constraintStart_toStartOf="@+id/questionBox">
 
         <RadioButton
@@ -96,12 +97,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questionBox"
-        app:layout_constraintVertical_bias="0.02" />
+        app:layout_constraintTop_toBottomOf="@+id/questionBox" />
 
 
 

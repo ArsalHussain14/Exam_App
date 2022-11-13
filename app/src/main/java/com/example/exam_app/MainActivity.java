@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     currentQuestion.setText("RESULT");
-                    score.setBackgroundColor(getResources().getColor(R.color.white));
+                    score.setBackgroundColor(getResources().getColor(R.color.green));
                     score.setText("Correct Answers "+correctCount+"\nWrong Answers "+wrongCount);
 
                     nextButton.setVisibility(View.GONE);
@@ -115,7 +115,10 @@ public class MainActivity extends AppCompatActivity {
                             result="Right";
                         else
                             result="wrong";
-                        displayAnswers.append(userAnswers[i]+"  "+correctOption[i]+"  "+result+"\n");
+
+                        displayAnswers.append(questionText[i]+"\n");
+
+                        displayAnswers.append(userAnswers[i]+"  "+correctOption[i]+"  "+result+"\n\n");
                     }
 
 
